@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SearchController extends Controller
 {
-    public function store(){
-        User::where('name', 'like', "%$query%")
-    ->orWhere('speciality', 'like', "%$query%")
-    ->get();
+    public function index(Request $request)
+    {
+        $query = $request->input('query');
 
+        $users = User::where('name', 'like', "%{$query}%")
+            ->orWhere('speciality', 'like', "%{$query}%")
+            ->get();
+
+        return view('search.results', compact('users', 'query'));
     }
 }
