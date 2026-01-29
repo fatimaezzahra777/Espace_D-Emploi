@@ -1,85 +1,106 @@
 <x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center
-                bg-gradient-to-br from-purple-700 via-purple-600 to-indigo-700 px-6">
+    <div class="w-full max-w-lg mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8">
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 dark:text-white mb-8">
+            Create your account 
+        </h2>
 
-        <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
+        <form method="POST"
+              action="{{ route('register') }}"
+              enctype="multipart/form-data"
+              class="space-y-5">
+            @csrf
 
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-2">
-                Crée ton compte
-            </h2>
+            <!-- Name -->
+            <div>
+                <x-input-label for="name" value="Name"/>
+                <x-text-input id="name"
+                              class="block w-full mt-1"
+                              type="text"
+                              name="name"
+                              :value="old('name')"
+                              required autofocus/>
+                <x-input-error :messages="$errors->get('name')" />
+            </div>
 
-            <p class="text-center text-gray-500 mb-6">
-                Commence ta nouvelle carrière dès maintenant 
-            </p>
+            <!-- Role -->
+            <div>
+                <x-input-label for="role" value="Role"/>
+                <select name="role" id="role"
+                        class="block w-full mt-1 rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="chercheur">Chercheur d'emploi</option>
+                    <option value="recruteur">Recruteur</option>
+                </select>
+                <x-input-error :messages="$errors->get('role')" />
+            </div>
 
-            <form method="POST" action="{{ route('register') }}" class="space-y-4">
-                @csrf
+            <!-- Email -->
+            <div>
+                <x-input-label for="email" value="Email"/>
+                <x-text-input id="email"
+                              class="block w-full mt-1"
+                              type="email"
+                              name="email"
+                              :value="old('email')"
+                              required/>
+                <x-input-error :messages="$errors->get('email')" />
+            </div>
 
-                <div>
-                    <x-input-label for="name" value="Nom complet" />
-                    <x-text-input id="name"
-                        class="mt-1 w-full rounded-xl"
-                        type="text"
-                        name="name"
-                        :value="old('name')"
-                        required autofocus />
-                    <x-input-error :messages="$errors->get('name')" class="mt-1" />
-                </div>
+            <!-- Bio -->
+            <div>
+                <x-input-label for="bio" value="bio"/>
+                <textarea name="bio" id="bio" rows="3"
+                          class="block w-full mt-1 rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="Parlez un peu de vous...">{{ old('bio') }}</textarea>
+                <x-input-error :messages="$errors->get('bio')" />
+            </div>
 
-                <div>
-                    <x-input-label for="role" value="Rôle" />
-                    <select name="role" id="role"
-                        class="mt-1 w-full rounded-xl border-gray-300 focus:border-purple-500 focus:ring-purple-500">
-                        <option value="chercheur">Chercheur d'emploi</option>
-                        <option value="recruteur">Recruteur</option>
-                    </select>
-                </div>
+            <!-- Photo -->
+            <div>
+                <x-input-label for="photo" value="photo"/>
+                <input type="file"
+                       name="photo"
+                       id="photo"
+                       class="block w-full mt-1 text-sm text-gray-700 dark:text-gray-300
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-lg file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-indigo-50 file:text-indigo-700
+                              hover:file:bg-indigo-100"/>
+                <x-input-error :messages="$errors->get('photo')" />
+            </div>
 
-                <div>
-                    <x-input-label for="email" value="Email" />
-                    <x-text-input id="email"
-                        class="mt-1 w-full rounded-xl"
-                        type="email"
-                        name="email"
-                        :value="old('email')"
-                        required />
-                    <x-input-error :messages="$errors->get('email')" class="mt-1" />
-                </div>
+            <!-- Password -->
+            <div>
+                <x-input-label for="password" value="Password"/>
+                <x-text-input id="password"
+                              class="block w-full mt-1"
+                              type="password"
+                              name="password"
+                              required/>
+                <x-input-error :messages="$errors->get('password')" />
+            </div>
 
-                <div>
-                    <x-input-label for="password" value="Mot de passe" />
-                    <x-text-input id="password"
-                        class="mt-1 w-full rounded-xl"
-                        type="password"
-                        name="password"
-                        required />
-                    <x-input-error :messages="$errors->get('password')" class="mt-1" />
-                </div>
+            <!-- Confirm Password -->
+            <div>
+                <x-input-label for="password_confirmation" value="Confirm Password"/>
+                <x-text-input id="password_confirmation"
+                              class="block w-full mt-1"
+                              type="password"
+                              name="password_confirmation"
+                              required/>
+            </div>
 
-                <div>
-                    <x-input-label for="password_confirmation" value="Confirmer le mot de passe" />
-                    <x-text-input id="password_confirmation"
-                        class="mt-1 w-full rounded-xl"
-                        type="password"
-                        name="password_confirmation"
-                        required />
-                </div>
+            <!-- Actions -->
+            <div class="flex items-center justify-between pt-4">
+                <a href="{{ route('login') }}"
+                   class="text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                    Already registered?
+                </a>
 
-                <button
-                    class="w-full mt-4 py-3 rounded-full
-                           bg-green-400 hover:bg-green-500
-                           text-purple-900 font-bold text-lg transition">
-                    S'inscrire
-                </button>
-
-                <p class="text-center text-sm text-gray-500 mt-4">
-                    Déjà inscrit ?
-                    <a href="{{ route('login') }}"
-                       class="text-purple-600 font-semibold hover:underline">
-                        Se connecter
-                    </a>
-                </p>
-            </form>
-        </div>
+                <x-primary-button class="px-6 py-2 text-base">
+                    Register
+                </x-primary-button>
+            </div>
+        </form>
     </div>
 </x-guest-layout>
