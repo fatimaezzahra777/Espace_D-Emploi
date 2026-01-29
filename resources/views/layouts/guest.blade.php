@@ -15,12 +15,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="font-sans bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100">
+<body class="font-sans text-gray-900">
 
-    <div class="min-h-screen flex flex-col justify-center items-center px-4">
+    <!-- Background -->
+    <div class="min-h-screen flex flex-col justify-center items-center px-4
+                bg-gradient-to-br from-purple-700 via-purple-600 to-indigo-700">
 
         <!-- Card -->
-        <div class="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 px-8 py-10">
+        <div class="w-full max-w-md
+                    bg-white/95 backdrop-blur
+                    rounded-3xl shadow-2xl
+                    border border-white/20
+                    px-8 py-10">
 
             <!-- Slot (Login / Register form) -->
             {{ $slot }}
@@ -28,13 +34,11 @@
         </div>
 
         <!-- Footer -->
-        <footer class="mt-10 text-sm text-gray-500 dark:text-gray-400 text-center">
-            &copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}.  
-            Tous droits réservés.
+        <footer class="mt-10 text-sm text-purple-100 text-center opacity-80">
+            &copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }} — Tous droits réservés
         </footer>
 
     </div>
 
 </body>
 </html>
-

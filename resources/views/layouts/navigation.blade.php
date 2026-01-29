@@ -7,7 +7,6 @@
             <!-- Left -->
             <div class="flex items-center gap-10">
 
-                <!-- Logo -->
                 <a href="{{ route('dashboard') }}"
                    class="flex items-center gap-2 font-bold text-purple-700 dark:text-purple-400">
                     <x-application-logo class="h-9 w-auto fill-current" />
@@ -16,7 +15,6 @@
                     </span>
                 </a>
 
-                <!-- Links -->
                 <div class="hidden sm:flex items-center gap-6">
                     <x-nav-link
                         :href="route('dashboard')"
@@ -28,7 +26,6 @@
 
             </div>
 
-            <!-- Right -->
             <div class="hidden sm:flex sm:items-center">
 
                 <x-dropdown align="right" width="48">
@@ -57,10 +54,9 @@
                         </button>
                     </x-slot>
 
-                    <!-- Dropdown -->
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            👤 Profil
+                             Profil
                         </x-dropdown-link>
 
                         <div class="border-t border-gray-100 my-1"></div>
@@ -70,7 +66,7 @@
                             <x-dropdown-link
                                 :href="route('logout')"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                🚪 Déconnexion
+                                 Déconnexion
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -78,7 +74,6 @@
 
             </div>
 
-            <!-- Hamburger -->
             <div class="flex items-center sm:hidden">
                 <button @click="open = ! open"
                         class="p-2 rounded-lg text-purple-600 hover:bg-purple-100 transition">
@@ -96,7 +91,6 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
     <div x-show="open" x-transition
          class="sm:hidden bg-white dark:bg-gray-900 border-t border-purple-100">
 
