@@ -1,12 +1,19 @@
 <x-guest-layout>
-    <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg">
+    <div class="max-w-md w-full mx-auto bg-white rounded-2xl shadow-xl p-8">
 
-        <h2 class="text-2xl font-bold text-center mb-6">
-            Connexion
-        </h2>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">
+                Connexion
+            </h2>
+
+            <p class="text-center text-sm text-gray-500 mb-6">
+                Accédez à votre espace Talentia
+            </p>
+
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+
+            
 
             <div>
                 <x-input-label for="email" value="Email" />
