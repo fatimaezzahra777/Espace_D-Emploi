@@ -1,6 +1,6 @@
 <x-guest-layout>
-    <div class="w-full max-w-lg mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8">
-        <h2 class="text-3xl font-extrabold text-center text-gray-900 dark:text-white mb-8">
+    <div class="w-full max-w-lg mx-auto bg-white rounded-2xl shadow-xl p-8">
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 text-bleu mb-8">
             Create your account 
         </h2>
 
@@ -26,7 +26,7 @@
             <div>
                 <x-input-label for="role" value="Role"/>
                 <select name="role" id="role"
-                        class="block w-full mt-1 rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
+                        class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-gray-800 text-bleu focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="chercheur">Chercheur d'emploi</option>
                     <option value="recruteur">Recruteur</option>
                 </select>
@@ -49,7 +49,7 @@
             <div>
                 <x-input-label for="bio" value="bio"/>
                 <textarea name="bio" id="bio" rows="3"
-                          class="block w-full mt-1 rounded-lg border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"
+                          class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"
                           placeholder="Parlez un peu de vous...">{{ old('bio') }}</textarea>
                 <x-input-error :messages="$errors->get('bio')" />
             </div>
@@ -60,7 +60,7 @@
                 <input type="file"
                        name="photo"
                        id="photo"
-                       class="block w-full mt-1 text-sm text-gray-700 dark:text-gray-300
+                       class="block w-full mt-1 text-sm text-gray-700 text-gray-300
                               file:mr-4 file:py-2 file:px-4
                               file:rounded-lg file:border-0
                               file:text-sm file:font-semibold
@@ -93,7 +93,7 @@
             <!-- Actions -->
             <div class="flex items-center justify-between pt-4">
                 <a href="{{ route('login') }}"
-                   class="text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                   class="text-sm text-bleu-600 text-gray-400 hover:underline">
                     Already registered?
                 </a>
 

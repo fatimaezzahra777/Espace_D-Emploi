@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="max-w-md w-full mx-auto bg-white rounded-2xl shadow-xl p-8">
 
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">
+            <h2 class="text-2xl font-bold text-center text-bleuçàhnvfffvuiokiuruitugrd' oriu-800 mb-2">
                 Connexion
             </h2>
 
