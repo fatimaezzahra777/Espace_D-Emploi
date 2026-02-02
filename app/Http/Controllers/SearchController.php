@@ -12,7 +12,7 @@ class SearchController extends Controller
         $query = $request->input('query');
 
         $users = User::where('name', 'like', "%{$query}%")
-            ->orWhere('speciality', 'like', "%{$query}%")
+            ->orWhere('specialite', 'like', "%{$query}%")
             ->get();
 
         return view('search.results', compact('users', 'query'));

@@ -26,7 +26,7 @@
             <div>
                 <x-input-label for="role" value="Role"/>
                 <select name="role" id="role"
-                        class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-gray-800 text-bleu focus:ring-indigo-500 focus:border-indigo-500">
+                        class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-white-800 text-bleu focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="chercheur">Chercheur d'emploi</option>
                     <option value="recruteur">Recruteur</option>
                 </select>
@@ -49,7 +49,7 @@
             <div>
                 <x-input-label for="bio" value="bio"/>
                 <textarea name="bio" id="bio" rows="3"
-                          class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-gray-800 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"
+                          class="block w-full mt-1 rounded-lg border-gray-300 border-gray-700 bg-white-800 text-bleu focus:ring-indigo-500 focus:border-indigo-500"
                           placeholder="Parlez un peu de vous...">{{ old('bio') }}</textarea>
                 <x-input-error :messages="$errors->get('bio')" />
             </div>
