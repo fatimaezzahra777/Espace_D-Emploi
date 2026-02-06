@@ -13,22 +13,35 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            
-
             <div>
                 <x-input-label for="email" value="Email" />
-                <x-text-input class="mt-1 block w-full" type="email" name="email" />
+                <x-text-input
+                    id="email"
+                    class="mt-1 block w-full"
+                    type="email"
+                    name="email"
+                    required
+                    autofocus
+                />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="password" value="Mot de passe" />
-                <x-text-input class="mt-1 block w-full" type="password" name="password" />
+                <x-text-input
+                    id="password"
+                    class="mt-1 block w-full"
+                    type="password"
+                    name="password"
+                    required
+                />
             </div>
 
             <button
+                type="submit"
                 class="mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
                 Se connecter
             </button>
         </form>
+
     </div>
 </x-guest-layout>

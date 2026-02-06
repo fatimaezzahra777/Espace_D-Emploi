@@ -17,10 +17,10 @@
 
 <body class="font-sans bg-white-200 from-gray-100 to-gray-200 from-gray-900 to-gray-800 text-gray-900 text-gray-100">
 
-    <div class="min-h-screen flex flex-col justify-center items-center px-4">
+    <div class="min-h-screen flex flex-col justify-center items-center ">
 
         <!-- Card -->
-        <div class="w-full max-w-md bg-white bg-gray-900 rounded-2xl shadow-xl border border-gray-100 border-gray-700 px-8 py-10">
+        <div class="  bg-white bg-gray-900 rounded-2xl shadow-xl border border-gray-100 border-gray-700 px-8 py-10">
 
             <!-- Slot (Login / Register form) -->
             {{ $slot }}

@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_profile_id')->constrained()->cascadeOnDelete();
+            $table->string('position');
+            $table->string('company');
+            $table->date('date_debut');
+            $table->date('date_fin')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('education', function (Blueprint $table) {
+        Schema::create('educations', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('cv_id')->constrained()->cascadeOnDelete();
+            $table->string('diplome');
+            $table->string('ecole');
+            $table->year('annee');
             $table->timestamps();
         });
+
     }
 
     /**
