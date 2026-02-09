@@ -12,7 +12,8 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\ApplicationController;
-
+use App\Http\Controllers\DashboardChercheurController;
+use App\Http\Controllers\DashboardRecruteurController;
 use App\Http\Controllers\JobOfferController;
 use App\Http\Controllers\EmployerApplicationController;
 
@@ -44,61 +45,49 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-Route::middleware(['auth','role:recreteur'])
-    ->get('/recreteur/dashboard', function () {
-        return view('Dashboard_recreteur');
-    })
-    ->name('recreteur.dashboard');
-
-
-Route::middleware(['auth','role:chercheur'])
-    ->get('/chercheur/dashboard', function () {
-        return view('Dashboard_chercheur');
-    })
-    ->name('chercheur.dashboard');
+Route::get('/recreteur/dashboard', [DashboardRecruteurController::class, 'index'])->name('recreteur.dashboard');
 
 
 
-Route::middleware(['auth', 'role:chercheur'])
-    ->prefix('chercheur')
-    ->name('chercheur.')
-    ->group(function () {
+Route::middleware(['auth','role:chercheur'])->group(function () {
 
-        Route::resource('profile', CandidateProfileController::class);
+    Route::get('/chercheur/dashboard', [DashboardChercheurController::class, 'index'])
+        ->name('chercheur.dashboard');
 
-        Route::resource('educations', EducationController::class);
-        Route::resource('experiences', ExperienceController::class);
-        Route::resource('skills', SkillController::class);
+    Route::resource('profile', CandidateProfileController::class);
 
+    Route::resource('educations', EducationController::class);
 
-        Route::get('job_offers', [App\Http\Controllers\JobOfferController::class, 'index'])
-            ->name('job_offers.index');
+    Route::resource('experiences', ExperienceController::class);
 
-        Route::get('/friends', [FriendshipController::class, 'index'])
-            ->name('friends.index');
+    Route::resource('skills', SkillController::class);
 
+    Route::get('job_offers', [App\Http\Controllers\JobOfferController::class, 'index'])
+        ->name('job_offers.index');
 
-        Route::post('/job_offers/{jobOffer}/apply',
-            [ApplicationController::class, 'store']
-        )->name('apply');
+    Route::get('job-offers/{jobOffer}', [App\Http\Controllers\JobOfferController::class, 'show'])
+        ->name('job-offers.show');
 
-        Route::get('/applications',
-            [ApplicationController::class, 'index']
-        )->name('applications.index');
+    Route::post('job_offers/{jobOffer}/apply', [App\Http\Controllers\ApplicationController::class, 'store'])
+        ->name('job_offers.apply');
 
-        Route::post('/friends/{user}',
-            [FriendshipController::class, 'send']
-        )->name('friends.send');
+    Route::get('/friends', [FriendshipController::class, 'index'])
+        ->name('friends.index');
 
-        Route::post('/friends/{user}/accept',
-            [FriendshipController::class, 'accept']
-        )->name('friends.accept');
+    Route::get('/applications', [ApplicationController::class, 'index'])
+        ->name('applications.index');
 
-        Route::post('/friends/{user}/reject',
-            [FriendshipController::class, 'reject']
-        )->name('friends.reject');
+    Route::post('/friends/{user}', [FriendshipController::class, 'send'])
+        ->name('friends.send');
+
+    Route::post('/friends/{user}/accept', [FriendshipController::class, 'accept'])
+        ->name('friends.accept');
+
+    Route::post('/friends/{user}/reject', [FriendshipController::class, 'reject'])
+        ->name('friends.reject');
+
 });
+
 
 
 

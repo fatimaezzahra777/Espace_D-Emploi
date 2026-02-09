@@ -6,7 +6,7 @@
 
 <h1 class="text-xl font-bold mb-4">Créer mon profil</h1>
 
-<form method="POST" action="{{ route('chercheur.profile.store') }}">
+<form method="POST" action="{{ route('profile.store') }}">
     @csrf
 
     <div class="mb-4">

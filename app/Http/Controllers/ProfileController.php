@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')
             ->with('success', 'Profil mis à jour avec succès');
-    })àl:
+    });
     
 
 

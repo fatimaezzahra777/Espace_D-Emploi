@@ -12,26 +12,47 @@ class JobOfferController extends Controller
 {
     public function index()
     {
-        $jobOffers = JobOffer::where('user_id', Auth::id())->get();
+        $jobOffers = JobOffer::where('is_closed', false)
+                            ->latest()
+                            ->get();
+
         return view('chercheur.job_offers.index', compact('jobOffers'));
+    }
+
+    public function show(JobOffer $jobOffer)
+    {
+        $candidatures = $jobOffer->applications()->with('user')->get();
+
+        return view('chercheur.job_offers.show', compact('jobOffer', 'candidatures'));
+    }
+
+
+    public function create()
+    {
+        return view('recreteur.job_offers.create');
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'company' => 'required',
-            'contract_type' => 'required',
-            'image' => 'required|image'
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'type_contrat' => 'required|string',
+            'image' => 'nullable|image',
         ]);
 
-        $data['image'] = $request->file('image')->store('job_offers','public');
-        $data['user_id'] = Auth::id();
+        $user = auth()->user();
 
-        JobOffer::create($data);
+        $offer = JobOffer::create([
+            'user_id' => $user->id,
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'type_contrat' => $request->type_contrat,
+            'image' => $request->file('image') ? $request->file('image')->store('job_offers') : null,
+            'is_closed' => false,
+        ]);
 
-        return redirect()->route('chercheur.job-offers.index');
+        return redirect()->route('recreteur.dashboard')->with('success', 'Offre créée avec succès !');
     }
 
     public function close(JobOffer $jobOffer)
@@ -43,3 +64,8 @@ class JobOfferController extends Controller
         return back();
     }
 }
+
+
+
+
+

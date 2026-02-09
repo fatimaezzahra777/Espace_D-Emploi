@@ -12,11 +12,7 @@
 
                 <div class="flex items-center space-x-6">
                     <a href="{{ route('recreteur.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
-                    <a href="{{ route('recreteur.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
-                    <a href="{{ route('recreteur.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
-                    <a href="{{ route('recreteur.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
                    
-                    
                     <!-- Notifications -->
                     <button class="relative text-gray-700 hover:text-blue-600">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

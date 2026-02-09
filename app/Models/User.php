@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\CandidateProfile;
+use App\Models\Friendship;
 
 class User extends Authenticatable
 {
@@ -79,12 +80,52 @@ class User extends Authenticatable
         return $this->hasMany(JobApplication::class);
     }
 
-    public function friends()
+    public function friendRequestsReceived()
     {
-        return $this->belongsToMany(User::class, 'friendships',
-            'user_id', 'friend_id')
-            ->withPivot('status')
-            ->withTimestamps();
+        return $this->hasMany(Friendship::class, 'receiver_id')
+                    ->where('status', 'pending')
+                    ->with('sender'); 
     }
 
-}
+
+    public function friendshipsSent()
+    {
+        return $this->hasMany(Friendship::class, 'sender_id');
+    }
+
+    public function friendshipsReceived()
+    {
+        return $this->hasMany(Friendship::class, 'receiver_id');
+    }
+
+    public function acceptedFriendshipsSent()
+    {
+        return $this->hasMany(Friendship::class, 'sender_id')
+                    ->where('status', 'accepted');
+    }
+
+    public function acceptedFriendshipsReceived()
+    {
+        return $this->hasMany(Friendship::class, 'receiver_id')
+                    ->where('status', 'accepted');
+    }
+
+
+    public function friends() {
+        $sent = $this->belongsToMany(User::class, 'friendships', 'sender_id', 'receiver_id')
+                     ->wherePivot('status', 'accepted');
+        
+        $received = $this->belongsToMany(User::class, 'friendships', 'receiver_id', 'sender_id')
+                          ->wherePivot('status', 'accepted');
+        
+        return $sent->union($received);
+    }
+
+    public function friendRequests() {
+        return $this->belongsToMany(User::class, 'friendships', 'receiver_id', 'sender_id')
+                    ->wherePivot('status', 'pending');
+    }
+
+
+
+    }

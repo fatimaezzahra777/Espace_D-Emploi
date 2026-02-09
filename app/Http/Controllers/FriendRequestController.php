@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\FriendRequest;
 
 class FriendRequestController extends Controller
 {
+    // Envoyer une invitation
     public function send(User $user)
     {
         FriendRequest::firstOrCreate([
@@ -13,7 +17,7 @@ class FriendRequestController extends Controller
             'receiver_id' => $user->id,
         ]);
 
-        return back();
+        return back()->with('success', 'Invitation envoyée');
     }
 
     public function accept(User $user)
@@ -27,7 +31,7 @@ class FriendRequestController extends Controller
 
         $request->delete();
 
-        return back();
+        return back()->with('success', 'Invitation acceptée');
     }
 
     public function reject(User $user)
@@ -36,6 +40,8 @@ class FriendRequestController extends Controller
             ->where('receiver_id', Auth::id())
             ->delete();
 
-        return back();
+        return back()->with('success', 'Invitation refusée');
     }
 }
+
+

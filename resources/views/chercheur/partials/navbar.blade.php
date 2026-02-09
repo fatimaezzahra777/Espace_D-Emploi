@@ -12,9 +12,9 @@
 
                 <div class="flex items-center space-x-6">
                     <a href="{{ route('chercheur.dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
-                    <a href="{{ route('chercheur.job_offers.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Offres d'emploi</a>
-                    <a href="{{ route('chercheur.profile.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Mon CV</a>
-                    <a href="{{ route('chercheur.friends.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Réseau</a>
+                    <a href="{{ route('job_offers.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Offres d'emploi</a>
+                    <a href="{{ route('profile.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Mon CV</a>
+                    <a href="{{ route('friends.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Réseau</a>
                     
                     <!-- Notifications -->
                     <button class="relative text-gray-700 hover:text-blue-600">

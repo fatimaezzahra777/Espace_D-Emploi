@@ -11,11 +11,11 @@
         <h2 class="font-semibold">{{ $profile->titre }}</h2>
         <p class="text-gray-600">{{ $profile->summary }}</p>
 
-        <a href="{{ route('chercheur.profile.edit',$profile->id) }}"
+        <a href="{{ route('profile.edit',$profile->id) }}"
            class="text-blue-600">Modifier</a>
     </div>
 @else
-    <a href="{{ route('chercheur.profile.create') }}"
+    <a href="{{ route('profile.create') }}"
        class="text-blue-600">Créer mon profil</a>
 @endif
 
